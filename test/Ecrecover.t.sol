@@ -3,8 +3,6 @@ pragma solidity ^0.8.17;
 
 import "forge-std/Test.sol";
 
-error AddressZero();
-
 contract EcrecoverTest is Test {
     struct EIP712Domain {
         string name;
@@ -126,7 +124,6 @@ contract EcrecoverTest is Test {
         bytes32 _r,
         bytes32 _s
     ) internal pure returns (bool) {
-        if (_target == address(0)) revert AddressZero();
         address _signer = ecrecover(_messageHash, _v, _r, _s);
         return _target == _signer;
     }
